@@ -33,5 +33,15 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   pi1:
     # Config indicated by + and applies to all files under models/example/
-    example:
+    staging:
       +materialized: view
+    marts:
+      +materialized: table
+
+seeds:
+  pi1:
+    +column_types:
+        id_registro: STRING
+        leitura_potenciometro: FLOAT64
+        latitude: FLOAT64
+        longitude: FLOAT64
