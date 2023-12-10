@@ -5,6 +5,8 @@ Leitura Potenciometro: 4
 Leitura Potenciometro: 4
 Leitura Potenciometro: 4
 Leitura Potenciometro: 4
+Leitura Potenciometro: 4
+Leitura Potenciometro: 3
 Latitude: 0.00
 Longitude: 0.00
 Latitude: 0.00
@@ -19,3 +21,7 @@ Latitude: 0.00
 Longitude: 0.00
 Latitude: 0.00
 Longitude: 0.00
+Latitude: 2.00
+Longitude: 3.00
+Latitude: 6.00
+Longitude: 8.00
