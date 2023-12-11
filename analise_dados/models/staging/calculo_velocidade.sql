@@ -18,18 +18,18 @@ FROM (
             objetivo,
             id_lancamento,
             id_registro,
-            tempo_inicial,
-            distancia_inicial,
-            (LEAD(tempo_inicial) OVER (ORDER BY objetivo, id_lancamento, id_registro)) AS tempo_final,
-            (LEAD(distancia_inicial) OVER (ORDER BY objetivo, id_lancamento, id_registro)) AS distancia_final,
+            tempo_final,
+            distancia_final,
+            (LAG(tempo_final) OVER (ORDER BY objetivo, id_lancamento, id_registro)) AS tempo_inicial,
+            (LAG(distancia_final) OVER (ORDER BY objetivo, id_lancamento, id_registro)) AS distancia_inicial,
             
         FROM(
             SELECT
                 objetivo,
                 CAST(id_lancamento AS INT) AS id_lancamento,
                 CAST(id_registro AS INT) AS id_registro,
-                distancia_percorrida AS distancia_inicial,
-                tempo AS tempo_inicial
+                distancia_percorrida AS distancia_final,
+                tempo AS tempo_final
             FROM {{ref('calculo_distancia_percorrida')}}
             ORDER BY
                 objetivo,
