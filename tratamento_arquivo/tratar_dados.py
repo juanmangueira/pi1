@@ -1,38 +1,69 @@
 import csv
-
-# Nome do arquivo de entrada e saída
-arquivo_txt = 'tratamento_arquivo/ler_pot.txt'
-arquivo_csv = 'analise_dados/seeds/dados.csv'
-
-# Dicionário para armazenar os dados
-dados = {'id_registro': [], 'leitura_potenciometro': [], 'latitude': [], 'longitude': []}
+import os
 
 # Função para limpar a string e converter para float se necessário
 def limpar_valor(valor):
     return float(valor.strip()) if '.' in valor else valor.strip()
 
-# Abrir o arquivo de texto e processar as linhas
-with open(arquivo_txt, 'r') as arquivo:
-    for linha in arquivo:
-        chave, valor = map(str.strip, linha.split(':', 1))
+# Função para processar o arquivo de texto e gerar o arquivo CSV
+def processar_arquivo(arquivo_txt, arquivo_csv, objetivo):
+    # Dicionário para armazenar os dados
+    dados = {'id_lancamento': [], 'leitura_potenciometro': [], 'latitude': [], 'longitude': [], 'objetivo': []}
 
-        if chave == 'Leitura Potenciometro':
-            dados['leitura_potenciometro'].append(limpar_valor(valor))
-        elif chave == 'Latitude':
-            dados['latitude'].append(limpar_valor(valor))
-        elif chave == 'Longitude':
-            dados['longitude'].append(limpar_valor(valor))
+    # Verificar se o arquivo CSV já existe
+    existe_arquivo = os.path.exists(arquivo_csv)
 
-# Determinar o número total de registros
-num_registros = len(dados['leitura_potenciometro'])
+    # Abrir o arquivo de texto e processar as linhas
+    with open(arquivo_txt, 'r') as arquivo:
+        leitura_potenciometro = None
 
-# Escrever os dados no arquivo CSV
-with open(arquivo_csv, 'w', newline='') as csv_file:
-    writer = csv.writer(csv_file)
-    
-    # Escrever o cabeçalho
-    writer.writerow(['id_registro', 'leitura_potenciometro', 'latitude', 'longitude'])
-    
-    # Escrever os dados
-    for i in range(num_registros):
-        writer.writerow([i + 1] + [dados[chave][i] for chave in ['leitura_potenciometro', 'latitude', 'longitude']])
+        for linha in arquivo:
+            chave, valor = map(str.strip, linha.split(':', 1))
+
+            if chave == 'Leitura Potenciometro':
+                leitura_potenciometro = limpar_valor(valor)
+                dados['leitura_potenciometro'].append(leitura_potenciometro)
+            elif chave == 'Latitude':
+                dados['latitude'].append(limpar_valor(valor))
+            elif chave == 'Longitude':
+                dados['longitude'].append(limpar_valor(valor))
+
+    # Determinar o número total de registros
+    num_registros = len(dados['leitura_potenciometro'])
+
+    # Adicionar a variável objetivo aos dados
+    dados['objetivo'] = [objetivo] * num_registros
+
+    # Adicionar o cabeçalho se o arquivo não existir
+    with open(arquivo_csv, 'a', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        if not existe_arquivo:
+            writer.writerow(['id_lancamento', 'leitura_potenciometro', 'latitude', 'longitude', 'objetivo'])
+
+        # Escrever os dados adicionando a nova coluna
+        for i in range(num_registros):
+            writer.writerow([i + 1] + [dados[chave][i] for chave in ['leitura_potenciometro', 'latitude', 'longitude', 'objetivo']])
+
+# Nome do arquivo de entrada e saída
+arquivo_txt = '/home/juanmangueira/pi1/tratamento_arquivo/ler_pot.txt'
+pasta_saida = '/home/juanmangueira/pi1/analise_dados/seeds'
+arquivo_csv = os.path.join(pasta_saida, 'dados.csv')
+
+# Cria a pasta de saída se não existir
+if not os.path.exists(pasta_saida):
+    os.makedirs(pasta_saida)
+
+# Solicitar a variável objetivo
+objetivo = input('Digite a variável objetivo: ')
+
+# Verificar se a entrada é um número
+try:
+    objetivo = float(objetivo)
+except ValueError:
+    print('Por favor, insira um valor numérico para a variável objetivo.')
+    exit()
+
+# Processar o arquivo e adicionar a nova coluna
+processar_arquivo(arquivo_txt, arquivo_csv, objetivo)
+
+print(f'O arquivo CSV foi atualizado com a nova coluna e salvo em: {arquivo_csv}')
