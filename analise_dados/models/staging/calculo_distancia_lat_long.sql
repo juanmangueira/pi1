@@ -1,6 +1,8 @@
 SELECT
     objetivo,
     id_lancamento,
+    id_registro,
+    tempo,
     latitude,
     longitude,
     (latitude*60) AS distancia_latitude,
@@ -8,4 +10,5 @@ SELECT
 FROM {{ref('stg_dados')}}
 ORDER BY
     objetivo,
-    id_lancamento
+    id_lancamento,
+    id_registro
