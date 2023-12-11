@@ -20,7 +20,7 @@ def processar_arquivo(arquivo_txt, arquivo_csv, objetivo, lancamento):
             chave, valor = map(str.strip, linha.split(':', 1))
             if chave == 'Tempo':
                 dados['tempo'].append(limpar_valor(valor))
-            elif chave == 'Altitude':
+            elif chave == ' ':
                 dados['altitude'].append(limpar_valor(valor))    
             elif chave == 'Latitude':
                 dados['latitude'].append(limpar_valor(valor))

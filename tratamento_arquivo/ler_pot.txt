@@ -1,40 +1,71 @@
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 0.00
-Longitude: 0.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 2.00
-Longitude: 3.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 6.00
-Longitude: 8.00
-Tempo: 0
-Altitude: 0.00
-Latitude: 10.00
-Longitude: 11.00
+Horario: 17:1:43
+Latitude: -15.990311
+Longitude: -48.044906
+
+Horario: 17:1:43
+Latitude: -15.990311
+Longitude: -48.044906
+
+Horario: 17:1:46
+Latitude: -15.990311
+Longitude: -48.044906
+
+Horario: 17:1:46
+Latitude: -15.990311
+Longitude: -48.044906
+
+Horario: 17:1:49
+Latitude: -15.990312
+Longitude: -48.044906
+
+Horario: 17:1:49
+Latitude: -15.990312
+Longitude: -48.044906
+
+Horario: 17:1:52
+Latitude: -15.990248
+Longitude: -48.044776
+
+Horario: 17:1:52
+Latitude: -15.990248
+Longitude: -48.044776
+
+Horario: 17:1:55
+Latitude: -15.990238
+Longitude: -48.044723
+
+Horario: 17:1:55
+Latitude: -15.990238
+Longitude: -48.044723
+
+Horario: 17:1:58
+Latitude: -15.990240
+Longitude: -48.044727
+
+Horario: 17:1:58
+Latitude: -15.990240
+Longitude: -48.044727
+
+Horario: 17:2:1
+Latitude: -15.990242
+Longitude: -48.044746
+
+Horario: 17:2:1
+Latitude: -15.990242
+Longitude: -48.044746
+
+Horario: 17:2:4
+Latitude: -15.990251
+Longitude: -48.044788
+
+Horario: 17:2:4
+Latitude: -15.990251
+Longitude: -48.044788
+
+Horario: 17:2:7
+Latitude: -15.990281
+Longitude: -48.044822
+
+Horario: 17:2:7
+Latitude: -15.990281
+Longitude: -48.044822
