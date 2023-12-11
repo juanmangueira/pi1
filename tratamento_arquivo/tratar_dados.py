@@ -13,14 +13,11 @@ def limpar_valor(valor):
 
 # Abrir o arquivo de texto e processar as linhas
 with open(arquivo_txt, 'r') as arquivo:
-    leitura_potenciometro = None
-
     for linha in arquivo:
         chave, valor = map(str.strip, linha.split(':', 1))
 
         if chave == 'Leitura Potenciometro':
-            leitura_potenciometro = limpar_valor(valor)
-            dados['leitura_potenciometro'].append(leitura_potenciometro)
+            dados['leitura_potenciometro'].append(limpar_valor(valor))
         elif chave == 'Latitude':
             dados['latitude'].append(limpar_valor(valor))
         elif chave == 'Longitude':
