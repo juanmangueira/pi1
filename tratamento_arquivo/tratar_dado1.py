@@ -60,6 +60,8 @@ def json_to_csv(json_filename, csv_filename):
         # Escrevendo os dados no arquivo CSV
         writer.writerow(data)
 
+
+
 def main() -> int:
     # Lendo os dados do arquivo de texto
     txt_data = read_txt('tratamento_arquivo/ler_pot.txt')
@@ -117,7 +119,7 @@ def main() -> int:
     }
 
     # Salvando os dados em um arquivo JSON
-    save_data('dados.json', data_to_save)
+    save_data('dados1.json', data_to_save)
 
     json_to_csv('dados.json', 'dados.csv')
 

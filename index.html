@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lançamentos bem sucedidos</title>
+    <!-- Adicione os links do Bootstrap para os estilos -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Lançamentos bem sucedidos</h1>
+
+        <!-- Abas de navegação -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link active" data-toggle="tab" href="#graph1">Lançamento 1</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#graph2">Lançamento 2</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="tab" href="#graph3">Lançamento 3</a>
+            </li>
+        </ul>
+
+        <!-- Conteúdo das abas -->
+        <div class="tab-content mt-4">
+            <!-- Aba 1 - Gráfico 1 -->
+            <div id="graph1" class="tab-pane active">
+                <h3>Lançamento 10m</h3>
+                <img src="Graph_1.png" alt="Gráfico 1">
+                <div  id="json-data1"></div>
+            </div>
+
+            <!-- Aba 2 - Gráfico 2 -->
+            <div id="graph2" class="tab-pane fade">
+                <h3>Lançamento 20m</h3>
+                <img src="Graph_2.png" alt="Gráfico 2">
+                <div  id="json-data2"></div>
+            </div>
+
+            <!-- Aba 3 - Gráfico 3 -->
+            <div id="graph3" class="tab-pane fade">
+                <h3>Lançamento 30m</h3>
+                <img src="Graph_3.png" alt="Gráfico 3">
+                <div  id="json-data3"></div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        // Carregar e exibir os dados do JSON
+        fetch('dados1.json')
+            .then(response => response.json())
+            .then(data => {
+                const jsonData = document.getElementById('json-data1');
+                jsonData.innerHTML = `
+                    <h2>Informações Adicionais:</h2>
+                    <p>Distância: ${data.Distance}</p>
+                    <p>Tempo: ${data.Time_Difference}</p>
+                    <p>Velocidade: ${data.Speed}</p>
+                    <p>Aceleracao: ${data.Aceleracao}</p>
+                    <p>Ângulo: 45º</p>
+                `;
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+            fetch('dados2.json')
+            .then(response => response.json())
+            .then(data => {
+                const jsonData = document.getElementById('json-data2');
+                jsonData.innerHTML = `
+                    <h2>Informações Adicionais:</h2>
+                    <p>Distância: ${data.Distance}</p>
+                    <p>Tempo: ${data.Time_Difference}</p>
+                    <p>Velocidade: ${data.Speed}</p>
+                    <p>Aceleracao: ${data.Aceleracao}</p>
+                    <p>Ângulo: 45º</p>
+                `;
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+            fetch('dados3.json')
+            .then(response => response.json())
+            .then(data => {
+                const jsonData = document.getElementById('json-data3');
+                jsonData.innerHTML = `
+                    <h2>Informações Adicionais:</h2>
+                    <p>Distância: ${data.Distance}</p>
+                    <p>Tempo: ${data.Time_Difference}</p>
+                    <p>Velocidade: ${data.Speed}</p>
+                    <p>Aceleracao: ${data.Aceleracao}</p>
+                    <p>Ângulo: 45º</p>
+                `;
+            })
+            .catch(error => console.error('Error fetching JSON:', error));
+    </script>
+
+    <!-- Adicione os scripts do Bootstrap -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
