@@ -8,7 +8,7 @@ def limpar_valor(valor):
 # Função para processar o arquivo de texto e gerar o arquivo CSV
 def processar_arquivo(arquivo_txt, arquivo_csv, objetivo):
     # Dicionário para armazenar os dados
-    dados = {'id_lancamento': [], 'latitude': [], 'longitude': [], 'objetivo': []}
+    dados = {'id_lancamento': [], 'tempo': [], 'altitude': [], 'latitude': [], 'longitude': [], 'objetivo': []}
 
     # Verificar se o arquivo CSV já existe
     existe_arquivo = os.path.exists(arquivo_csv)
@@ -18,14 +18,17 @@ def processar_arquivo(arquivo_txt, arquivo_csv, objetivo):
 
         for linha in arquivo:
             chave, valor = map(str.strip, linha.split(':', 1))
-
-            if chave == 'Latitude':
+            if chave == 'Tempo':
+                dados['tempo'].append(limpar_valor(valor))
+            elif chave == 'Altitude':
+                dados['altitude'].append(limpar_valor(valor))    
+            elif chave == 'Latitude':
                 dados['latitude'].append(limpar_valor(valor))
             elif chave == 'Longitude':
                 dados['longitude'].append(limpar_valor(valor))
 
     # Determinar o número total de registros
-    num_registros = len(dados['latitude'])
+    num_registros = len(dados['tempo'])
 
     # Adicionar a variável objetivo aos dados
     dados['objetivo'] = [objetivo] * num_registros
@@ -34,16 +37,16 @@ def processar_arquivo(arquivo_txt, arquivo_csv, objetivo):
     with open(arquivo_csv, 'a', newline='') as csv_file:
         writer = csv.writer(csv_file)
         if not existe_arquivo:
-            writer.writerow(['id_lancamento', 'latitude', 'longitude', 'objetivo'])
+            writer.writerow(['id_lancamento', 'tempo', 'altitude', 'latitude', 'longitude', 'objetivo'])
 
         # Escrever os dados adicionando a nova coluna
         for i in range(num_registros):
-            writer.writerow([i + 1] + [dados[chave][i] for chave in ['latitude', 'longitude', 'objetivo']])
+            writer.writerow([i + 1] + [dados[chave][i] for chave in ['tempo', 'altitude', 'latitude', 'longitude', 'objetivo']])
 
 # Nome do arquivo de entrada e saída
 arquivo_txt = '/home/juanmangueira/pi1/tratamento_arquivo/ler_pot.txt'
 pasta_saida = '/home/juanmangueira/pi1/analise_dados/seeds'
-arquivo_csv = os.path.join(pasta_saida, 'dados.csv')
+arquivo_csv = os.path.join(pasta_saida, 'dados.csv') 
 
 # Cria a pasta de saída se não existir
 if not os.path.exists(pasta_saida):
@@ -51,13 +54,6 @@ if not os.path.exists(pasta_saida):
 
 # Solicitar a variável objetivo
 objetivo = input('Digite a variável objetivo: ')
-
-# Verificar se a entrada é um número
-try:
-    objetivo = float(objetivo)
-except ValueError:
-    print('Por favor, insira um valor numérico para a variável objetivo.')
-    exit()
 
 # Processar o arquivo e adicionar a nova coluna
 processar_arquivo(arquivo_txt, arquivo_csv, objetivo)
