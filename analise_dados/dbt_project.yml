@@ -42,6 +42,8 @@ seeds:
   pi1:
     +column_types:
         id_registro: STRING
-        leitura_potenciometro: FLOAT64
+        objetivo: STRING
+        tempo: FLOAT64
+        altitude: FLOAT64
         latitude: FLOAT64
         longitude: FLOAT64
