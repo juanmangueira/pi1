@@ -6,9 +6,9 @@ def limpar_valor(valor):
     return float(valor.strip()) if '.' in valor else valor.strip()
 
 # Função para processar o arquivo de texto e gerar o arquivo CSV
-def processar_arquivo(arquivo_txt, arquivo_csv, objetivo):
+def processar_arquivo(arquivo_txt, arquivo_csv, objetivo, lancamento):
     # Dicionário para armazenar os dados
-    dados = {'id_lancamento': [], 'tempo': [], 'altitude': [], 'latitude': [], 'longitude': [], 'objetivo': []}
+    dados = {'id_registro': [], 'tempo': [], 'altitude': [], 'latitude': [], 'longitude': [], 'objetivo': [], 'id_lancamento': []}
 
     # Verificar se o arquivo CSV já existe
     existe_arquivo = os.path.exists(arquivo_csv)
@@ -32,16 +32,17 @@ def processar_arquivo(arquivo_txt, arquivo_csv, objetivo):
 
     # Adicionar a variável objetivo aos dados
     dados['objetivo'] = [objetivo] * num_registros
+    dados['id_lancamento'] = [lancamento] * num_registros
 
     # Adicionar o cabeçalho se o arquivo não existir
     with open(arquivo_csv, 'a', newline='') as csv_file:
         writer = csv.writer(csv_file)
         if not existe_arquivo:
-            writer.writerow(['id_lancamento', 'tempo', 'altitude', 'latitude', 'longitude', 'objetivo'])
+            writer.writerow(['id_registro', 'tempo', 'altitude', 'latitude', 'longitude', 'objetivo', 'id_lancamento'])
 
         # Escrever os dados adicionando a nova coluna
         for i in range(num_registros):
-            writer.writerow([i + 1] + [dados[chave][i] for chave in ['tempo', 'altitude', 'latitude', 'longitude', 'objetivo']])
+            writer.writerow([i + 1] + [dados[chave][i] for chave in ['tempo', 'altitude', 'latitude', 'longitude', 'objetivo', 'id_lancamento']])
 
 # Nome do arquivo de entrada e saída
 arquivo_txt = '/home/juanmangueira/pi1/tratamento_arquivo/ler_pot.txt'
@@ -53,9 +54,10 @@ if not os.path.exists(pasta_saida):
     os.makedirs(pasta_saida)
 
 # Solicitar a variável objetivo
-objetivo = input('Digite a variável objetivo: ')
+objetivo = input('Digite o objetivo em metros: ')
+lancamento = input('Digite o número do lancamento: ')
 
 # Processar o arquivo e adicionar a nova coluna
-processar_arquivo(arquivo_txt, arquivo_csv, objetivo)
+processar_arquivo(arquivo_txt, arquivo_csv, objetivo, lancamento)
 
 print(f'O arquivo CSV foi atualizado com a nova coluna e salvo em: {arquivo_csv}')
