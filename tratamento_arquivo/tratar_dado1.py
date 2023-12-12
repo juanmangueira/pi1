@@ -119,7 +119,7 @@ def main() -> int:
     }
 
     # Salvando os dados em um arquivo JSON
-    save_data('dados1.json', data_to_save)
+    save_data('dados.json', data_to_save)
 
     json_to_csv('dados.json', 'dados.csv')
 

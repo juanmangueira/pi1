@@ -8,8 +8,6 @@
 <body>
     <div class="container mt-4">
         <h1>Lançamentos bem sucedidos</h1>
-
-        <!-- Abas de navegação -->
         <ul class="nav nav-tabs">
             <li class="nav-item">
                 <a class="nav-link active" data-toggle="tab" href="#graph1">Lançamento 1</a>
@@ -60,6 +58,8 @@
                     <p>Velocidade: ${data.Speed}</p>
                     <p>Aceleracao: ${data.Aceleracao}</p>
                     <p>Ângulo: 45º</p>
+                    <p>Pressão: 25 psi</p>
+
                 `;
             })
             .catch(error => console.error('Error fetching JSON:', error));
@@ -74,6 +74,8 @@
                     <p>Velocidade: ${data.Speed}</p>
                     <p>Aceleracao: ${data.Aceleracao}</p>
                     <p>Ângulo: 45º</p>
+                    <p>Pressão: 30 psi</p>
+
                 `;
             })
             .catch(error => console.error('Error fetching JSON:', error));
@@ -88,6 +90,8 @@
                     <p>Velocidade: ${data.Speed}</p>
                     <p>Aceleracao: ${data.Aceleracao}</p>
                     <p>Ângulo: 45º</p>
+                    <p>Pressão: 42 psi</p>
+
                 `;
             })
             .catch(error => console.error('Error fetching JSON:', error));
